@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/png" href="https://example.com/asphalt10-logo.png" />
+</head>
+<body class="bg-gray-900 text-white font-sans">
 
+  <!-- En-tête -->
+  <header class="bg-black py-6 shadow-md">
+    <div class="container mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <img src="https://example.com/asphalt10-logo.png" alt="Logo Asphalt 10" class="w-12 h-12" />
+        <h1 class="text-3xl font-bold">Asphalt 10</h1>
+      </div>
+      <a
+        href="https://asphalt10-devloppement-studio.github.io/download/"
+        class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg font-semibold transition"
+      >
+        📥 Télécharger Riders
+      </a>
+    </div>
+    }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe src="https://exemple.com"></iframe>
+  </header>
+
+  <!-- À propos -->
+  <section class="container mx-auto px-4 py-10">
+    <h2 class="text-2xl font-bold mb-4">À propos du jeu</h2>
+    <p class="text-gray-300 leading-relaxed">
+      Riders est le dernier opus de la célèbre série de jeu Riders.
+    </p>
+  </section>
+
+  <!-- Actualités -->
+  <section class="container mx-auto px-4 py-10">
+    <h2 class="text-2xl font-bold mb-6">📰 Actualités</h2>
+    <div id="newsContainer" class="space-y-6">
+      <!-- Les actus seront injectées ici -->
+    </div>
+  </section>
+
+  <!-- Pied de page -->
+  <footer class="bg-black py-6 mt-10 text-center text-gray-500 text-sm">
+    &copy; 2025 Alture Games Studios. Tous droits réservés.
+  </footer>
+
+  <!-- Script JS pour les actus -->
+  <script>
+    const news = [
+      {
+        title: "Aucune nouvelle disponible.",
+        content: "Oups, il n'y a pas de nouvelles pour l'instant ! Reviens plus tard."
+      },
+      {
+        title: "",
+        content: ""
+      },
+      {
+        title: "",
+        content: ""
+      }
+    ];
+
+    const newsContainer = document.getElementById("newsContainer");
+
+    news.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "bg-gray-800 p-6 rounded-lg shadow-md";
+      div.innerHTML = `
+        <h3 class="text-xl font-semibold mb-2">${item.title}</h3>
+        <p class="text-gray-300">${item.content}</p>
+      `;
+      newsContainer.appendChild(div);
+    });
+  </script>
+
+</body>
+      </html>
+      

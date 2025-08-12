@@ -1,1 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riders Download</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
+  <!-- Favicon (remplace ce lien par ton vrai logo Asphalt 10) -->
+  <link rel="icon" type="image/png" href="img/Logo.png">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+  <div class="text-center max-w-md">
+    <!-- Sélecteur de langue -->
+    <div class="mb-6">
+      <label for="langSelect" class="text-sm text-gray-400 mr-2">🌐 Langue :</label>
+      <select id="langSelect" class="bg-gray-800 text-white px-3 py-1 rounded">
+        <option value="fr">Français 🇫🇷</option>
+        <option value="en">English 🇬🇧</option>
+      </select>
+    </div>
+
+    <!-- Titre et description -->
+    <h1 id="title" class="text-4xl font-bold mb-4">🏎️ Riders</h1>
+    <p id="description" class="mb-6 text-gray-300">Choisis ta plateforme pour télécharger le jeu :</p>
+
+    <!-- Bouton principal -->
+    <button
+      id="downloadBtn"
+      class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300"
+    >
+      📥 Télécharger
+    </button>
+
+    <!-- Menu de sélection de plateforme -->
+    <div id="platformMenu" class="mt-6 hidden space-y-4">
+      <button
+        onclick="downloadFile('pc')"
+        class="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-lg w-64 mx-auto"
+      >
+        <i class="fas fa-desktop text-xl"></i> <span class="label-pc">Télécharger sur PC</span>
+      </button>
+
+      <button
+        onclick="downloadFile('mobile')"
+        class="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 py-2 px-4 rounded-lg w-64 mx-auto"
+      >
+        <i class="fab fa-android text-xl"></i> <span class="label-mobile">Télécharger sur Mobile</span>
+      </button>
+
+      <button
+        onclick="downloadFile('Web')"
+        class="flex items-center justify-center gap-3 bg-gray-600 hover:bg-gray-700 py-2 px-4 rounded-lg w-64 mx-auto"
+      >
+        <i class="fab fa-apple text-xl"></i> <span class="label-Web">Lancer sur le web </span>
+      </button>
+    </div>
+
+    <p id="status" class="mt-4 text-green-400 hidden">Téléchargement lancé...</p>
+  </div>
+
+  <script>
+    const downloadBtn = document.getElementById("downloadBtn");
+    const platformMenu = document.getElementById("platformMenu");
+    const status = document.getElementById("status");
+    const langSelect = document.getElementById("langSelect");
+
+    downloadBtn.addEventListener("click", () => {
+      platformMenu.classList.remove("hidden");
+      status.classList.add("hidden");
+    });
+
+    function downloadFile(platform) {
+      let fileUrl = "";
+
+      switch (platform) {
+        case "pc":
+          fileUrl = "https://google.com";
+          break;
+        case "mobile":
+          fileUrl = "https://google.com";
+          break;
+        case "Web":
+          fileUrl = "https://example.com/asphalt10-ios.ipa";
+          break;
+      }
+
+      status.textContent = langSelect.value === "fr"
+        ? `Téléchargement pour ${platform} lancé...`
+        : `Download for ${platform} started...`;
+      status.classList.remove("hidden");
+
+      const link = document.createElement("a");
+      link.href = fileUrl;
+      link.download = fileUrl.split("/").pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Mise à jour des textes selon la langue
+    langSelect.addEventListener("change", () => {
+      const lang = langSelect.value;
+      document.getElementById("title").textContent = "🚗 Asphalt 10";
+      document.getElementById("description").textContent = lang === "fr"
+        ? "Choisis ta plateforme pour télécharger le jeu :"
+        : "Choose your platform to download the game:";
+      downloadBtn.textContent = lang === "fr" ? "📥 Télécharger" : "📥 Download";
+      document.querySelector(".label-windows").textContent = "Windows";
+      document.querySelector(".label-android").textContent = "Android";
+      document.querySelector(".label-ios").textContent = "iOS";
+    });
+
+    // Détection automatique de la langue du navigateur
+    window.addEventListener("DOMContentLoaded", () => {
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang.startsWith("en")) {
+        langSelect.value = "en";
+      } else {
+        langSelect.value = "fr";
+      }
+      langSelect.dispatchEvent(new Event("change"));
+    });
+  </script>
+
+</body>
+  </html>
+      
